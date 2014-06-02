@@ -2,6 +2,15 @@ function [solution_phenotype, solution_fitness, solution_mean_fitness] = runSGA(
   genotypes = encodePhenotype(init_phenotypes);
 
   for it=1:max_iterations
+    genotypes_fitness = calculateFitness(genotypes);
+    [solution_fitness, idx] = max(genotypes_fitness);
+
+    if solution_fitness == 32
+      solution_mean_fitness = mean(genotypes_fitness);
+      solution_phenotype = decodeGenotype(genotypes(idx, :));
+      break;
+    end
+
     offspring = [];
     %%% mutation %%%
     mutation_parents = rouletteSelection(genotypes, 10);
