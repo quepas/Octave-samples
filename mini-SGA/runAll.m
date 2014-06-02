@@ -1,3 +1,6 @@
+close all;
+clear all;
+
 %%% global parameters %%%
 MAX_ALPHABET_VALUE = 2^32-1;
 POPULATION_COUNT = 100;
@@ -19,8 +22,16 @@ for it=1:TEST_RUNS
 end
 
 figure(1);
-plot(1:TEST_RUNS, numbers);
+plot(1:TEST_RUNS, numbers, 'g');
+title('Phenotypes');
+xlabel('No. of generations');
+ylabel('Number');
 figure(2);
-plot(1:TEST_RUNS, fitness);
-figure(3);
-plot(1:TEST_RUNS, fitness_mean);
+hold on;
+title('Fitness (max and mean)');
+xlabel('No. of generations');
+ylabel('Fitness');
+plot(1:TEST_RUNS, fitness, 'b');
+plot(1:TEST_RUNS, fitness_mean, 'r');
+legend('Max fitness', 'Mean fitness');
+hold off;
