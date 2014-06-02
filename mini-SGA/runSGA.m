@@ -1,4 +1,4 @@
-function [solution_phenotype, solution_fitness] = runSGA(init_phenotypes, max_iterations)
+function [solution_phenotype, solution_fitness, solution_mean_fitness] = runSGA(init_phenotypes, max_iterations)
   genotypes = encodePhenotype(init_phenotypes);
 
   for it=1:max_iterations
@@ -18,5 +18,6 @@ function [solution_phenotype, solution_fitness] = runSGA(init_phenotypes, max_it
 
   result_fitness = calculateFitness(genotypes);
   [solution_fitness, idx] = max(result_fitness);
+  solution_mean_fitness = mean(result_fitness);
   solution_phenotype = decodeGenotype(genotypes(idx, :));
 end
