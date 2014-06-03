@@ -7,7 +7,6 @@ POPULATION_COUNT = 100;
 GENERATION_COUNT = 50;
 TEST_RUNS = 30;
 
-fitness = [];
 test_runs_max_fit = ones(TEST_RUNS, GENERATION_COUNT);
 
 for it=1:TEST_RUNS
