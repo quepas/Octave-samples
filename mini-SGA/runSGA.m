@@ -1,5 +1,6 @@
-function [solution_phenotype, solution_fitness, solution_mean_fitness] = runSGA(init_phenotypes, max_iterations)
+function [max_fitnesses] = runSGA(init_phenotypes, max_iterations)
   genotypes = encodePhenotype(init_phenotypes);
+  max_fitnesses = [];
 
   for it=1:max_iterations
     offspring = [];
@@ -15,12 +16,8 @@ function [solution_phenotype, solution_fitness, solution_mean_fitness] = runSGA(
     end
     genotypes = offspring;
 
-    result_fitness = calculateFitness(genotypes);
-    [solution_fitness, idx] = max(result_fitness);
-    if solution_fitness == 32
-      break;
-    end
+    genotypes_fitnesses = calculateFitness(genotypes);
+    iteration_max_fitness= max(genotypes_fitnesses);
+    max_fitnesses = [max_fitnesses iteration_max_fitness];
   end
-  solution_mean_fitness = mean(result_fitness);
-  solution_phenotype = decodeGenotype(genotypes(idx, :));
 end
