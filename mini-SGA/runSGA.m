@@ -1,8 +1,8 @@
-function [max_fitnesses] = runSGA(init_phenotypes, max_iterations)
+function [max_fitnesses] = runSGA(init_phenotypes, max_generations)
   genotypes = encodePhenotype(init_phenotypes);
   max_fitnesses = [];
 
-  for it=1:max_iterations
+  for it=1:max_generations
     offspring = [];
     %%% mutation %%%
     mutation_parents = rouletteSelection(genotypes, 10);
@@ -17,7 +17,7 @@ function [max_fitnesses] = runSGA(init_phenotypes, max_iterations)
     genotypes = offspring;
 
     genotypes_fitnesses = calculateFitness(genotypes);
-    iteration_max_fitness= max(genotypes_fitnesses);
-    max_fitnesses = [max_fitnesses iteration_max_fitness];
+    generation_max_fitness = max(genotypes_fitnesses);
+    max_fitnesses = [max_fitnesses generation_max_fitness];
   end
 end
